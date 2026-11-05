@@ -1,0 +1,135 @@
+[
+  {
+    "id": "hamb-clasica",
+    "name": "Hamburguesa Clásica",
+    "category": "hamburguesas",
+    "categoryName": "Hamburguesas",
+    "price": 16000,
+    "image": "img/hamburguesa clasica.png",
+    "badge": "Clásica",
+    "badgeColor": "#e65100",
+    "description": "150g de carne 100% res a la parrilla, queso cheddar fundido, lechuga fresca, rodajas de tomate y salsa especial Donde Juan."
+  },
+  {
+    "id": "hamb-deluxe",
+    "name": "Hamburguesa Deluxe",
+    "category": "hamburguesas",
+    "categoryName": "Hamburguesas",
+    "price": 22000,
+    "image": "img/hamburguesa deluxe.png",
+    "badge": "⭐ Más Vendida",
+    "badgeColor": "#b71c1c",
+    "description": "200g de carne angus seleccionada, tocineta ahumada crujiente, doble queso cheddar, cebolla caramelizada y salsa tártara."
+  },
+  {
+    "id": "hamb-bbq",
+    "name": "Hamburguesa BBQ Bacon Fest",
+    "category": "hamburguesas",
+    "categoryName": "Hamburguesas",
+    "price": 24000,
+    "image": "img/hamburguesa deluxe.png",
+    "badge": "🔥 Especial",
+    "badgeColor": "#c2185b",
+    "description": "Doble carne a la brasa con salsa barbacoa ahumada, tiras de tocineta extra crujiente, pepinillos y aros de cebolla dorados."
+  },
+  {
+    "id": "hamb-queso-extra",
+    "name": "Hamburguesa Cuatro Quesos",
+    "category": "hamburguesas",
+    "categoryName": "Hamburguesas",
+    "price": 23000,
+    "image": "img/hamburguesa clasica.png",
+    "badge": "Queso Extremo",
+    "badgeColor": "#f57f17",
+    "description": "Carne jugosa 160g cubierta de queso cheddar fundido, mozzarella derretido, parmesano gratinado y suave crema de queso azul."
+  },
+  {
+    "id": "combo-juan",
+    "name": "Combo Especial Donde Juan",
+    "category": "combos",
+    "categoryName": "Combos Especiales",
+    "price": 28000,
+    "image": "img/combo especial.png",
+    "badge": "👑 Combo Estrella",
+    "badgeColor": "#b71c1c",
+    "description": "Hamburguesa Clásica doble carne + Porción grande de papas a la francesa crujientes + Bebida personal fría de 400ml."
+  },
+  {
+    "id": "combo-deluxe",
+    "name": "Combo Deluxe Premium",
+    "category": "combos",
+    "categoryName": "Combos Especiales",
+    "price": 34000,
+    "image": "img/combo especial.png",
+    "badge": "⭐ Recomendado",
+    "badgeColor": "#6a1b9a",
+    "description": "Hamburguesa Deluxe con tocineta crocante + Papas rústicas con queso cheddar fundido + Gaseosa o limonada natural."
+  },
+  {
+    "id": "combo-pareja",
+    "name": "Mega Combo Dúo Parrillero",
+    "category": "combos",
+    "categoryName": "Combos Especiales",
+    "price": 49000,
+    "image": "img/promoción.png",
+    "badge": "👫 Para Dos",
+    "badgeColor": "#00838f",
+    "description": "2 Hamburguesas completas a elección + 2 Porciones de papas francesas + 2 Bebidas personales + salsas artesanales de la casa."
+  },
+  {
+    "id": "acomp-papas-francesas",
+    "name": "Papas Francesas Clásicas",
+    "category": "acompanamientos",
+    "categoryName": "Acompañamientos",
+    "price": 8000,
+    "image": "img/acompañamientos.png",
+    "badge": "Crujientes",
+    "badgeColor": "#f57f17",
+    "description": "Papas seleccionadas cortadas en bastones, doradas a la perfección con el toque exacto de sal marina y dip de mayonesa de ajo."
+  },
+  {
+    "id": "acomp-aros-cebolla",
+    "name": "Aros de Cebolla Dorados",
+    "category": "acompanamientos",
+    "categoryName": "Acompañamientos",
+    "price": 10000,
+    "image": "img/acompañamientos.png",
+    "badge": "Apanados",
+    "badgeColor": "#e65100",
+    "description": "10 aros de cebolla fresca apanados en tempura crujiente, servidos con salsa barbacoa ahumada y salsa tártara casera."
+  },
+  {
+    "id": "acomp-papas-cheddar-bacon",
+    "name": "Papas Rústicas con Cheddar y Tocineta",
+    "category": "acompanamientos",
+    "categoryName": "Acompañamientos",
+    "price": 14000,
+    "image": "img/acompañamientos.png",
+    "badge": "🔥 Favorito",
+    "badgeColor": "#c62828",
+    "description": "Papas en cascos rústicos horneadas y fritas, bañadas en abundante queso cheddar caliente y trozos de tocineta crujiente."
+  },
+  {
+    "id": "bebida-gaseosa",
+    "name": "Gaseosa Personal 400ml",
+    "category": "bebidas",
+    "categoryName": "Bebidas",
+    "price": 5000,
+    "image": "img/combo especial.png",
+    "badge": "Fría",
+    "badgeColor": "#1565c0",
+    "description": "Elige tu favorita bien helada: Coca-Cola original, Coca-Cola Zero, Sprite, Manzana Postobón o Colombiana."
+  },
+  {
+    "id": "bebida-limonada",
+    "name": "Limonada Natural / Cerezada",
+    "category": "bebidas",
+    "categoryName": "Bebidas",
+    "price": 8000,
+    "image": "img/acompañamientos.png",
+    "badge": "100% Natural",
+    "badgeColor": "#2e7d32",
+    "description": "Jugo natural de limones frescos recién exprimidos, servido granizado con opción de hierbabuena fresca o cerezas dulces."
+  }
+]
+

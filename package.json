@@ -1,0 +1,26 @@
+{
+  "name": "donde-juan-restaurante",
+  "version": "1.0.0",
+  "description": "Sistema web completo para el restaurante Donde Juan: Frontend interactivo (Inicio, Login/Registro, Menú con Carrito) y Backend REST API con Express y Node.js.",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node --watch backend/server.js",
+    "test": "node -c backend/server.js"
+  },
+  "keywords": [
+    "restaurante",
+    "hamburguesas",
+    "carrito-de-compras",
+    "autenticacion",
+    "express",
+    "nodejs"
+  ],
+  "author": "Donde Juan",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0"
+  }
+}

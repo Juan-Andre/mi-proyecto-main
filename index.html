@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadatos básicos para configuración de idioma, codificación de caracteres y diseño responsivo -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Hoja de estilos principal del restaurante -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Tipografía institucional Oswald cargada desde Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
+    <title>Donde Juan - Menú, Promociones y Cuenta</title>
+</head>
+<body>
+    <!-- ======================================================================
+         CABECERA / NAVEGACIÓN PRINCIPAL DE ESCRITORIO
+         ====================================================================== -->
+    <header>    
+        <div class="header-container">
+            <!-- Logotipo del restaurante que enlaza a la sección de inicio -->
+            <a href="#inicio"><img src="logo/donde juan.png" alt="Logotipo oficial de Donde Juan"></a>
+
+            <!-- Botón tipo hamburguesa para pantallas móviles -->
+            <button class="menu-toggle" type="button" aria-label="Abrir menú de navegación">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Menú de navegación con enlaces a páginas y secciones -->
+            <div class="text">
+                <a href="#inicio" class="btn-menu">Inicio</a>
+                <a href="menu.html" class="btn-menu">Menú</a>
+                <a href="#nosotros" class="btn-menu">Nosotros</a>
+                <a href="login.html" class="btn-menu">Mi Cuenta</a>
+            </div>
+
+            <!-- Acciones laterales derechas: botón de carrito y acceso de usuario -->
+            <div class="header-right-actions">
+                <!-- Botón de carrito con contador interactivo -->
+                <button type="button" class="btn-cart-header" id="btnOpenCartHeader" aria-label="Abrir carrito de compras">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-label">Carrito</span>
+                    <span class="cart-badge" id="cartBadgeHeader">0</span>
+                </button>
+
+                <!-- Área dinámica de usuario (muestra Ingresar/Registrarse o Nombre de usuario si hay sesión) -->
+                <div class="users" id="usersDesktop">
+                    <a href="login.html" class="btn-usuario" id="navLoginBtn">Ingresar</a>
+                    <a href="login.html#registro" class="btn-usuario" id="navRegisterBtn">Registrarse</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ======================================================================
+         MENÚ DESPLEGABLE MÓVIL (DRAWER DE NAVEGACIÓN PARA CELULARES)
+         ====================================================================== -->
+    <div class="mobile-overlay" id="mobileOverlay">
+        <nav class="mobile-nav-dropdown" id="mobileNav">
+            <a href="#inicio" class="btn-menu">Inicio</a>
+            <a href="menu.html" class="btn-menu">Menú</a>
+            <a href="#nosotros" class="btn-menu">Nosotros</a>
+            <a href="login.html" class="btn-menu">Mi Cuenta</a>
+            <!-- Botón móvil para acceder al carrito -->
+            <button type="button" class="btn-mobile-cart" id="btnOpenCartMobile">
+                🛒 Ver Carrito (<span id="cartBadgeMobile">0</span>)
+            </button>
+            <!-- Contenedor dinámico de autenticación para móvil -->
+            <div class="mobile-users-wrapper" id="usersMobile">
+                <a href="login.html" class="btn-usuario" id="mobileLoginBtn">Ingresar</a>
+                <a href="login.html#registro" class="btn-usuario" id="mobileRegisterBtn">Registrarse</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- ======================================================================
+         SECCIÓN INICIO / BANNER DE PROMOCIÓN
+         ====================================================================== -->
+    <section id="inicio" class="promo">
+        <a href="menu.html" title="Haz clic para ver las promociones en el menú">
+            <img class="promo" src="img/promoción.png" alt="Promoción especial de combos de hamburguesas Donde Juan">
+        </a>
+    </section>
+
+    <!-- ======================================================================
+         SECCIÓN DE PLATILLOS DESTACADOS
+         ====================================================================== -->
+    <section id="menu" class="menu-section">
+        <div class="menu-container">
+            <h2>Nuestras Especialidades</h2>
+            <div class="galeria-platillos">
+                <!-- Tarjeta: Hamburguesa Clásica -->
+                <div class="platillo">
+                    <img src="img/hamburguesa clasica.png" alt="Hamburguesa clásica con queso fundido">
+                    <h3>Hamburguesa Clásica</h3>
+                </div>
+                <!-- Tarjeta: Combo Especial -->
+                <div class="platillo">
+                    <img src="img/combo especial.png" alt="Combo con hamburguesa, papas y gaseosa">
+                    <h3>Combo Especial</h3>
+                </div>
+                <!-- Tarjeta: Hamburguesa Deluxe -->
+                <div class="platillo">
+                    <img src="img/hamburguesa deluxe.png" alt="Hamburguesa deluxe con tocineta y doble queso">
+                    <h3>Hamburguesa Deluxe</h3>
+                </div>
+                <!-- Tarjeta: Acompañamientos -->
+                <div class="platillo">
+                    <img src="img/acompañamientos.png" alt="Acompañamientos dorados y crujientes">
+                    <h3>Acompañamientos</h3>
+                </div>
+            </div>
+
+            <!-- Llamado a la acción para ver el menú completo y hacer pedidos -->
+            <div class="menu-ver-mas-box">
+                <a href="menu.html" class="btn-ver-menu-completo">
+                    🍔 Ver Menú Completo y Hacer Pedido en Línea con Carrito 🛒
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         SECCIÓN SOBRE NOSOTROS
+         ====================================================================== -->
+    <section id="nosotros" class="nosotros-section">
+        <div class="nosotros-container">
+            <h2>Sobre Nosotros</h2>
+            <p>Bienvenido a Donde Juan, tu lugar favorito para disfrutar de deliciosas hamburguesas y combos especiales elaborados con carne 100% artesanal e ingredientes de primera calidad.</p>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         PIE DE PÁGINA (FOOTER)
+         ====================================================================== -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <p>© Donde Juan - Sabor y Calidad Garantizados. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <section class="assistant-widget" aria-label="Asistente virtual de Donde Juan">
+        <div class="assistant-panel" id="assistantPanel" aria-label="Chat con el asistente" hidden>
+            <div class="assistant-header">
+                <div class="assistant-avatar" aria-hidden="true">🍔</div>
+                <div>
+                    <h2>Asistente Donde Juan</h2>
+                    <p>Estoy aquí para ayudarte</p>
+                </div>
+                <button class="assistant-close" id="assistantClose" type="button" aria-label="Cerrar chat">×</button>
+            </div>
+            <div class="assistant-messages" id="assistantMessages" role="log" aria-live="polite" aria-relevant="additions">
+                <div class="assistant-message assistant-message-bot">
+                    ¡Hola! 👋 Soy el asistente de Donde Juan. Puedo recomendarte algo rico, contarte qué incluye un plato o ayudarte con tu pedido. ¿Qué se te antoja?
+                </div>
+            </div>
+            <div class="assistant-suggestions" aria-label="Preguntas frecuentes">
+                <button type="button" data-assistant-question="¿Qué me recomiendas?">Recomiéndame algo</button>
+                <button type="button" data-assistant-question="¿Cuánto tarda el domicilio?">Domicilios</button>
+                <button type="button" data-assistant-question="¿Qué cupones tienen?">Cupones</button>
+            </div>
+            <form class="assistant-form" id="assistantForm">
+                <label class="assistant-sr-only" for="assistantInput">Escribe tu mensaje</label>
+                <input id="assistantInput" type="text" maxlength="300" placeholder="Escribe tu pregunta..." autocomplete="off" required>
+                <button type="submit" aria-label="Enviar mensaje">➤</button>
+            </form>
+            <p class="assistant-disclaimer">Asistente automático sobre el menú y los pedidos.</p>
+        </div>
+        <button class="assistant-launcher" id="assistantLauncher" type="button" aria-expanded="false" aria-controls="assistantPanel">
+            <span aria-hidden="true">💬</span>
+            <span>¿Te ayudo?</span>
+        </button>
+    </section>
+
+    <!-- ======================================================================
+         SCRIPTS MODULARES DEL FRONTEND (ARQUITECTURA ORGANIZADA EN js/)
+         ====================================================================== -->
+    <!-- 1. Cliente API para comunicación con el servidor backend y fallback local -->
+    <script src="js/api.js"></script>
+    <!-- 2. Gestión de autenticación, sesión y perfil de usuario -->
+    <script src="js/auth.js"></script>
+    <!-- 3. Gestión del carrito de compras, cupones y checkout -->
+    <script src="js/cart.js"></script>
+    <!-- 4. Coordinador global de navegación, cabecera y eventos -->
+    <script src="js/main.js"></script>
+    <!-- 5. Asistente automático para consultas sobre el menú y los pedidos -->
+    <script src="js/asistente.js"></script>
+</body>
+</html>

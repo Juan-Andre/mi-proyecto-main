@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadatos de configuración básica -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Hoja de estilos CSS del restaurante -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Fuente Oswald -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
+    <title>Donde Juan - Menú y Pedidos en Línea</title>
+</head>
+<body class="menu-page-body">
+    <!-- ======================================================================
+         ENCABEZADO / NAVEGACIÓN PRINCIPAL
+         ====================================================================== -->
+    <header>    
+        <div class="header-container">
+            <!-- Logotipo del restaurante -->
+            <a href="index.html#inicio"><img src="logo/donde juan.png" alt="Logotipo oficial de Donde Juan"></a>
+
+            <!-- Botón tipo hamburguesa para pantallas móviles -->
+            <button class="menu-toggle" type="button" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Menú de navegación principal -->
+            <div class="text">
+                <a href="index.html#inicio" class="btn-menu">Inicio</a>
+                <a href="menu.html" class="btn-menu active-nav">Menú</a>
+                <a href="index.html#nosotros" class="btn-menu">Nosotros</a>
+                <a href="login.html" class="btn-menu">Mi Cuenta</a>
+            </div>
+
+            <!-- Botón de carrito y acceso de usuario -->
+            <div class="header-right-actions">
+                <!-- Botón de Carrito en Cabecera con contador dinámico -->
+                <button type="button" class="btn-cart-header" id="btnOpenCartHeader" aria-label="Abrir carrito de compras">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-label">Carrito</span>
+                    <span class="cart-badge" id="cartBadgeHeader">0</span>
+                </button>
+
+                <!-- Área de Usuario Dinámica (Ingresar o Perfil) -->
+                <div class="users" id="usersDesktop">
+                    <a href="login.html" class="btn-usuario" id="navLoginBtn">Ingresar</a>
+                    <a href="login.html#registro" class="btn-usuario" id="navRegisterBtn">Registrarse</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menú Desplegable Móvil -->
+    <div class="mobile-overlay" id="mobileOverlay">
+        <nav class="mobile-nav-dropdown" id="mobileNav">
+            <a href="index.html#inicio" class="btn-menu">Inicio</a>
+            <a href="menu.html" class="btn-menu active-nav">Menú</a>
+            <a href="index.html#nosotros" class="btn-menu">Nosotros</a>
+            <a href="login.html" class="btn-menu">Mi Cuenta</a>
+            <button type="button" class="btn-mobile-cart" id="btnOpenCartMobile">
+                🛒 Ver Carrito (<span id="cartBadgeMobile">0</span>)
+            </button>
+            <div class="mobile-users-wrapper" id="usersMobile">
+                <a href="login.html" class="btn-usuario" id="mobileLoginBtn">Ingresar</a>
+                <a href="login.html#registro" class="btn-usuario" id="mobileRegisterBtn">Registrarse</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- ======================================================================
+         BANNER PRINCIPAL DEL MENÚ (HERO SECTION)
+         ====================================================================== -->
+    <section class="menu-hero-banner">
+        <div class="menu-hero-content">
+            <h1>Nuestro Menú Artesanal</h1>
+            <p>Selecciona tus hamburguesas, combos y acompañamientos favoritos. ¡Agrégalos al carrito y pídelos a domicilio en minutos!</p>
+            <div class="menu-hero-features">
+                <span class="hero-feature">🚀 Entregas en 30-45 min</span>
+                <span class="hero-feature">🛵 Envío Gratis en compras > $30.000</span>
+                <span class="hero-feature">🔥 Ingredientes 100% Frescos</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         CONTENIDO PRINCIPAL DEL CATÁLOGO
+         ====================================================================== -->
+    <main class="menu-main-container">
+        <!-- Barra de herramientas: Búsqueda en vivo y Filtros por Categoría -->
+        <div class="menu-toolbar">
+            <!-- Input de búsqueda en tiempo real -->
+            <div class="menu-search-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="menuSearchInput" placeholder="Buscar por nombre o ingrediente (ej. tocineta, queso, combo)..." autocomplete="off">
+                <button type="button" id="btnClearSearch" class="btn-clear-search hidden" aria-label="Limpiar búsqueda">✖</button>
+            </div>
+
+            <!-- Botones de pestañas para filtrar por categoría -->
+            <div class="category-filters" role="tablist">
+                <button type="button" class="category-btn active" data-category="todos">
+                    🍔 Todos (<span id="countTodos">0</span>)
+                </button>
+                <button type="button" class="category-btn" data-category="hamburguesas">
+                    🍔 Hamburguesas (<span id="countHamburguesas">0</span>)
+                </button>
+                <button type="button" class="category-btn" data-category="combos">
+                    👑 Combos (<span id="countCombos">0</span>)
+                </button>
+                <button type="button" class="category-btn" data-category="acompanamientos">
+                    🍟 Acompañamientos (<span id="countAcompanamientos">0</span>)
+                </button>
+                <button type="button" class="category-btn" data-category="bebidas">
+                    🥤 Bebidas (<span id="countBebidas">0</span>)
+                </button>
+            </div>
+        </div>
+
+        <!-- Mensaje de estado de resultados de búsqueda -->
+        <div class="menu-results-status" id="menuResultsStatus"></div>
+
+        <!-- Cuadrícula dinámica donde se inyectan las tarjetas de platillos mediante js/menu.js -->
+        <div class="menu-catalog-grid" id="menuCatalogGrid"></div>
+    </main>
+
+    <!-- ======================================================================
+         SISTEMA DE CARRITO DE COMPRAS (DRAWER LATERAL DESLIZABLE)
+         ====================================================================== -->
+    <div class="cart-drawer-overlay" id="cartDrawerOverlay">
+        <aside class="cart-drawer" id="cartDrawer" aria-label="Carrito de compras">
+            <!-- Cabecera del Drawer con título y botón de cierre -->
+            <div class="cart-drawer-header">
+                <div class="cart-header-title">
+                    <h3>🛒 Tu Carrito</h3>
+                    <span class="cart-items-count-text" id="cartItemsCountText">0 productos</span>
+                </div>
+                <button type="button" class="btn-close-cart" id="btnCloseCart" aria-label="Cerrar carrito">✕</button>
+            </div>
+
+            <!-- Cuerpo del Drawer: Lista dinámica de platillos en el carrito -->
+            <div class="cart-drawer-body" id="cartDrawerBody"></div>
+
+            <!-- Pie del Drawer: Cupones de descuento, desglose de costos y botón de pago -->
+            <div class="cart-drawer-footer" id="cartDrawerFooter">
+                <!-- Sección para ingresar cupones de descuento (ej: DONDEJUAN10) -->
+                <div class="coupon-section">
+                    <div class="coupon-input-group">
+                        <input type="text" id="couponCodeInput" placeholder="Código de descuento (ej: DONDEJUAN10)" autocomplete="off">
+                        <button type="button" id="btnApplyCoupon" class="btn-apply-coupon">Aplicar</button>
+                    </div>
+                    <div class="coupon-feedback" id="couponFeedback"></div>
+                </div>
+
+                <!-- Desglose financiero: Subtotal, Descuento, Envío y Total -->
+                <div class="cart-summary-breakdown">
+                    <div class="summary-line">
+                        <span>Subtotal:</span>
+                        <strong id="cartSubtotalText">$0</strong>
+                    </div>
+                    <div class="summary-line discount-line hidden" id="discountLine">
+                        <span>Descuento aplicado:</span>
+                        <strong id="cartDiscountText">-$0</strong>
+                    </div>
+                    <div class="summary-line">
+                        <span>Costo de envío:</span>
+                        <span id="cartShippingText">$5.000</span>
+                    </div>
+
+                    <!-- Barra de progreso para incentivar envío gratis ($30.000) -->
+                    <div class="shipping-progress-box" id="shippingProgressBox">
+                        <div class="shipping-progress-text" id="shippingProgressText">Agrega $30.000 para Envío Gratis</div>
+                        <div class="shipping-progress-bar">
+                            <div class="shipping-progress-fill" id="shippingProgressFill" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Total final a pagar -->
+                    <div class="summary-line total-line">
+                        <span>Total a Pagar:</span>
+                        <strong id="cartTotalText">$0</strong>
+                    </div>
+                </div>
+
+                <!-- Botones de acción del carrito -->
+                <div class="cart-actions-group">
+                    <button type="button" class="btn-checkout" id="btnOpenCheckout">
+                        <span>Proceder al Pago</span>
+                        <span id="btnCheckoutPrice">$0</span>
+                    </button>
+                    <button type="button" class="btn-clear-cart" id="btnClearCart">Vaciar Carrito</button>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- ======================================================================
+         BOTÓN FLOTANTE DEL CARRITO (ACCESO RÁPIDO EN ESQUINA INFERIOR DERECHA)
+         ====================================================================== -->
+    <button type="button" class="floating-cart-btn" id="btnFloatingCart" aria-label="Ver carrito">
+        <span class="floating-cart-icon">🛒</span>
+        <span class="floating-cart-info">
+            <span class="floating-cart-count" id="floatingCartCount">0</span>
+            <span class="floating-cart-total" id="floatingCartTotal">$0</span>
+        </span>
+    </button>
+
+    <!-- ======================================================================
+         MODAL DE CHECKOUT / FINALIZAR PEDIDO
+         ====================================================================== -->
+    <div class="modal-overlay hidden" id="checkoutModalOverlay">
+        <div class="modal-content checkout-modal-card">
+            <div class="modal-header">
+                <h2>🍔 Finalizar Tu Pedido</h2>
+                <button type="button" class="btn-close-modal" id="btnCloseCheckoutModal">✕</button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Resumen de items del pedido -->
+                <div class="checkout-order-summary">
+                    <h4>Resumen del Pedido (<span id="modalItemsCount">0</span> productos)</h4>
+                    <div class="checkout-items-mini-list" id="modalItemsMiniList"></div>
+                    <div class="checkout-total-banner">
+                        <span>Total a pagar con envío:</span>
+                        <strong id="modalTotalBanner">$0</strong>
+                    </div>
+                </div>
+
+                <!-- Formulario de entrega -->
+                <form id="formCheckout" class="checkout-form" novalidate>
+                    <div class="form-section-title">📍 Datos de Entrega</div>
+
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="orderName">Nombre y Apellido *</label>
+                            <input type="text" id="orderName" placeholder="Juan Pérez" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderPhone">Teléfono / WhatsApp *</label>
+                            <input type="tel" id="orderPhone" placeholder="300 123 4567" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="orderAddress">Dirección Completa de Entrega *</label>
+                        <input type="text" id="orderAddress" placeholder="Ej: Carrera 15 # 45-20, Apto 302" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="orderNotes">Barrio / Indicaciones adicionales (Opcional)</label>
+                        <input type="text" id="orderNotes" placeholder="Ej: Timbre blanco, dejar con portería, sin cebolla...">
+                    </div>
+
+                    <div class="form-section-title">💳 Método de Pago</div>
+                    <div class="payment-methods-grid">
+                        <label class="payment-method-card active">
+                            <input type="radio" name="paymentMethod" value="Efectivo" checked>
+                            <span class="payment-icon">💵</span>
+                            <span class="payment-text">Efectivo</span>
+                        </label>
+                        <label class="payment-method-card">
+                            <input type="radio" name="paymentMethod" value="Nequi / Daviplata">
+                            <span class="payment-icon">📱</span>
+                            <span class="payment-text">Nequi / Daviplata</span>
+                        </label>
+                        <label class="payment-method-card">
+                            <input type="radio" name="paymentMethod" value="Datáfono / Tarjeta">
+                            <span class="payment-icon">💳</span>
+                            <span class="payment-text">Tarjeta / Datáfono</span>
+                        </label>
+                    </div>
+
+                    <div class="cash-change-group" id="cashChangeGroup">
+                        <label for="cashChange">¿Con cuánto vas a pagar? (Para llevarte cambio)</label>
+                        <input type="text" id="cashChange" placeholder="Ej: $50.000 (dejar en blanco si es exacto)">
+                    </div>
+
+                    <!-- Botones de Acción de Pedido -->
+                    <div class="checkout-actions">
+                        <button type="submit" class="btn-submit-order-whatsapp">
+                            <span>📱 Pedir por WhatsApp</span>
+                            <small>Envía el detalle del pedido directamente al restaurante</small>
+                        </button>
+                        <button type="button" class="btn-submit-order-online" id="btnSubmitOrderOnline">
+                            <span>✅ Confirmar Pedido en Línea</span>
+                            <small>Registra tu orden en el backend con número de seguimiento</small>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================================
+         MODAL DE FACTURA / TICKET DE ÉXITO
+         ====================================================================== -->
+    <div class="modal-overlay hidden" id="orderSuccessModal">
+        <div class="modal-content success-modal-card">
+            <div class="success-icon-badge">🎉</div>
+            <h2>¡Tu Pedido ha sido Confirmado!</h2>
+            <p class="success-subtitle">Hemos recibido tu orden y ya está en preparación en Donde Juan.</p>
+
+            <div class="order-ticket-card" id="orderTicketCard"></div>
+
+            <div class="success-modal-actions">
+                <a href="https://wa.me/573001234567" target="_blank" class="btn-whatsapp-ticket" id="btnWhatsappTicket">
+                    📱 Enviar copia al WhatsApp del restaurante
+                </a>
+                <button type="button" class="btn-close-ticket" id="btnCloseTicket">Seguir explorando el Menú</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mensaje Toast de retroalimentación flotante -->
+    <div class="toast-notification hidden" id="toastNotification" role="status"></div>
+
+    <!-- Pie de Página -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <p>© Donde Juan - Sabor y Calidad Garantizados. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- ======================================================================
+         SCRIPTS MODULARES DEL FRONTEND (CARGADOS DESDE js/)
+         ====================================================================== -->
+    <!-- 1. Cliente API para conectar con backend Express y fallback en localStorage -->
+    <script src="js/api.js"></script>
+    <!-- 2. Lógica de autenticación, login, registro y perfil -->
+    <script src="js/auth.js"></script>
+    <!-- 3. Lógica del carrito de compras, cupones y checkout -->
+    <script src="js/cart.js"></script>
+    <!-- 4. Lógica de renderizado del catálogo del menú, búsqueda y filtros -->
+    <script src="js/menu.js"></script>
+    <!-- 5. Coordinador global de navegación y cabecera -->
+    <script src="js/main.js"></script>
+</body>
+</html>

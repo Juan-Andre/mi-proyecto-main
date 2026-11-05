@@ -1,0 +1,12 @@
+[
+  {
+    "id": "demo-user-1",
+    "name": "Juan Pérez",
+    "email": "juan@ejemplo.com",
+    "phone": "300 123 4567",
+    "password": "password123",
+    "points": 150,
+    "createdAt": "2026-01-15T00:00:00.000Z"
+  }
+]
+

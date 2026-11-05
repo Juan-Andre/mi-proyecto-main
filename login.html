@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadatos de configuración básica -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Fuente Oswald -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
+    <title>Donde Juan - Iniciar Sesión y Registro</title>
+</head>
+<body class="auth-page-body">
+    <!-- ======================================================================
+         CABECERA / NAVEGACIÓN PRINCIPAL
+         ====================================================================== -->
+    <header>    
+        <div class="header-container">
+            <!-- Logotipo que retorna a la página de inicio -->
+            <a href="index.html#inicio"><img src="logo/donde juan.png" alt="Logotipo oficial de Donde Juan"></a>
+
+            <!-- Botón móvil para desplegar navegación -->
+            <button class="menu-toggle" type="button" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Enlaces de navegación principales -->
+            <div class="text">
+                <a href="index.html#inicio" class="btn-menu">Inicio</a>
+                <a href="menu.html" class="btn-menu">Menú</a>
+                <a href="index.html#nosotros" class="btn-menu">Nosotros</a>
+                <a href="login.html" class="btn-menu active-nav">Mi Cuenta</a>
+            </div>
+
+            <!-- Botón de carrito y contenedor de usuario -->
+            <div class="header-right-actions">
+                <button type="button" class="btn-cart-header" id="btnOpenCartHeader" aria-label="Abrir carrito de compras">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-label">Carrito</span>
+                    <span class="cart-badge" id="cartBadgeHeader">0</span>
+                </button>
+                <div class="users" id="usersDesktop">
+                    <a href="login.html" class="btn-usuario" id="navLoginBtn">Ingresar</a>
+                    <a href="login.html#registro" class="btn-usuario" id="navRegisterBtn">Registrarse</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menú desplegable móvil -->
+    <div class="mobile-overlay" id="mobileOverlay">
+        <nav class="mobile-nav-dropdown" id="mobileNav">
+            <a href="index.html#inicio" class="btn-menu">Inicio</a>
+            <a href="menu.html" class="btn-menu">Menú</a>
+            <a href="index.html#nosotros" class="btn-menu">Nosotros</a>
+            <a href="login.html" class="btn-menu active-nav">Mi Cuenta</a>
+            <button type="button" class="btn-mobile-cart" id="btnOpenCartMobile">
+                🛒 Ver Carrito (<span id="cartBadgeMobile">0</span>)
+            </button>
+            <div class="mobile-users-wrapper" id="usersMobile">
+                <a href="login.html" class="btn-usuario" id="mobileLoginBtn">Ingresar</a>
+                <a href="login.html#registro" class="btn-usuario" id="mobileRegisterBtn">Registrarse</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- ======================================================================
+         CONTENIDO PRINCIPAL: AUTENTICACIÓN Y PERFIL DE USUARIO
+         ====================================================================== -->
+    <main class="auth-main-wrapper">
+        <section id="auth" class="auth-section">
+            <div class="auth-container">
+                <!-- Título introductorio de la sección -->
+                <div class="auth-header-title">
+                    <h2>Tu Cuenta en Donde Juan</h2>
+                    <p>Accede a tu cuenta o regístrate para disfrutar de promociones, acumular puntos y ordenar más rápido.</p>
+                </div>
+
+                <!-- ==========================================================
+                     CAJA DE AUTENTICACIÓN (VISITANTE NO AUTENTICADO)
+                     ========================================================== -->
+                <div id="authBox" class="auth-box">
+                    <!-- Pestañas para alternar entre Login y Registro -->
+                    <div class="auth-tabs" role="tablist">
+                        <button type="button" class="auth-tab-btn active" id="tabLoginBtn" role="tab" aria-selected="true">
+                            Iniciar Sesión
+                        </button>
+                        <button type="button" class="auth-tab-btn" id="tabRegisterBtn" role="tab" aria-selected="false">
+                            Registrarse
+                        </button>
+                    </div>
+
+                    <!-- Notificaciones dinámicas de error o éxito -->
+                    <div id="authAlert" class="auth-alert hidden" role="alert"></div>
+
+                    <!-- ------------------------------------------------------
+                         FORMULARIO: INICIAR SESIÓN
+                         ------------------------------------------------------ -->
+                    <form id="formLogin" class="auth-form active" novalidate>
+                        <div class="form-title-group">
+                            <h3>¡Bienvenido de vuelta!</h3>
+                            <p>Ingresa tus credenciales para continuar</p>
+                        </div>
+
+                        <!-- Campo: Correo Electrónico -->
+                        <div class="form-group">
+                            <label for="loginEmail">Correo Electrónico</label>
+                            <div class="input-field">
+                                <span class="field-icon">✉️</span>
+                                <input type="email" id="loginEmail" placeholder="tu-correo@ejemplo.com" required autocomplete="email">
+                            </div>
+                        </div>
+
+                        <!-- Campo: Contraseña con botón para alternar visibilidad -->
+                        <div class="form-group">
+                            <label for="loginPassword">Contraseña</label>
+                            <div class="input-field">
+                                <span class="field-icon">🔒</span>
+                                <input type="password" id="loginPassword" placeholder="••••••••" required autocomplete="current-password">
+                                <button type="button" class="btn-toggle-pass" data-target="loginPassword" aria-label="Mostrar u ocultar contraseña">👁️</button>
+                            </div>
+                        </div>
+
+                        <!-- Opciones secundarias: Recordarme y Olvido de contraseña -->
+                        <div class="form-row-actions">
+                            <label class="remember-label">
+                                <input type="checkbox" id="loginRemember" checked>
+                                <span>Recordarme</span>
+                            </label>
+                            <button type="button" class="btn-link-action" id="btnForgotPass">¿Olvidaste tu contraseña?</button>
+                        </div>
+
+                        <!-- Botón para enviar login -->
+                        <button type="submit" class="btn-auth-submit">Entrar a mi cuenta</button>
+
+                        <!-- Caja de ayuda rápida con cuenta demo para pruebas -->
+                        <div class="demo-credential-box">
+                            <div class="demo-title">💡 ¿Quieres probar rápido? Usa la cuenta demo:</div>
+                            <div class="demo-info">
+                                <span><strong>Email:</strong> juan@ejemplo.com</span>
+                                <span><strong>Clave:</strong> 123456</span>
+                            </div>
+                            <button type="button" class="btn-demo-autofill" id="btnDemoAutofill">
+                                Autocompletar datos de prueba
+                            </button>
+                        </div>
+
+                        <!-- Enlace para cambiar a registro -->
+                        <p class="auth-switch-text">
+                            ¿Aún no tienes una cuenta? 
+                            <a href="#registro" id="linkGoToRegister">Regístrate aquí</a>
+                        </p>
+                    </form>
+
+                    <!-- ------------------------------------------------------
+                         FORMULARIO: REGISTRARSE
+                         ------------------------------------------------------ -->
+                    <form id="formRegister" class="auth-form" novalidate>
+                        <div class="form-title-group">
+                            <h3>Crea tu nueva cuenta</h3>
+                            <p>Sé parte del club Donde Juan y accede a descuentos exclusivos</p>
+                        </div>
+
+                        <!-- Campo: Nombre completo -->
+                        <div class="form-group">
+                            <label for="registerName">Nombre Completo</label>
+                            <div class="input-field">
+                                <span class="field-icon">👤</span>
+                                <input type="text" id="registerName" placeholder="Juan Pérez" required autocomplete="name">
+                            </div>
+                        </div>
+
+                        <!-- Campo: Correo electrónico -->
+                        <div class="form-group">
+                            <label for="registerEmail">Correo Electrónico</label>
+                            <div class="input-field">
+                                <span class="field-icon">✉️</span>
+                                <input type="email" id="registerEmail" placeholder="tu-correo@ejemplo.com" required autocomplete="email">
+                            </div>
+                        </div>
+
+                        <!-- Campo: Teléfono de contacto -->
+                        <div class="form-group">
+                            <label for="registerPhone">Teléfono / WhatsApp (Opcional)</label>
+                            <div class="input-field">
+                                <span class="field-icon">📱</span>
+                                <input type="tel" id="registerPhone" placeholder="Ej: 300 123 4567" autocomplete="tel">
+                            </div>
+                        </div>
+
+                        <!-- Campo: Contraseña -->
+                        <div class="form-group">
+                            <label for="registerPassword">Contraseña</label>
+                            <div class="input-field">
+                                <span class="field-icon">🔒</span>
+                                <input type="password" id="registerPassword" placeholder="Mínimo 6 caracteres" minlength="6" required autocomplete="new-password">
+                                <button type="button" class="btn-toggle-pass" data-target="registerPassword" aria-label="Mostrar u ocultar contraseña">👁️</button>
+                            </div>
+                            <small class="field-hint">Debe tener al menos 6 caracteres.</small>
+                        </div>
+
+                        <!-- Campo: Confirmar contraseña -->
+                        <div class="form-group">
+                            <label for="registerPasswordConfirm">Confirmar Contraseña</label>
+                            <div class="input-field">
+                                <span class="field-icon">🔒</span>
+                                <input type="password" id="registerPasswordConfirm" placeholder="Repite tu contraseña" minlength="6" required autocomplete="new-password">
+                                <button type="button" class="btn-toggle-pass" data-target="registerPasswordConfirm" aria-label="Mostrar u ocultar contraseña">👁️</button>
+                            </div>
+                        </div>
+
+                        <!-- Aceptación de términos y condiciones -->
+                        <div class="terms-group">
+                            <label>
+                                <input type="checkbox" id="registerTerms" required>
+                                <span>Acepto los términos de servicio y política de privacidad de Donde Juan</span>
+                            </label>
+                        </div>
+
+                        <!-- Botón para enviar registro -->
+                        <button type="submit" class="btn-auth-submit">Crear mi cuenta</button>
+
+                        <!-- Enlace para cambiar a login -->
+                        <p class="auth-switch-text">
+                            ¿Ya tienes una cuenta registrada? 
+                            <a href="#login" id="linkGoToLogin">Inicia sesión</a>
+                        </p>
+                    </form>
+                </div>
+
+                <!-- ==========================================================
+                     PANEL DE PERFIL (SOLO VISIBLE CUANDO LA SESIÓN ESTÁ ACTIVA)
+                     ========================================================== -->
+                <div id="userProfileBox" class="user-profile-box hidden">
+                    <div class="profile-card">
+                        <!-- Cabecera del perfil con avatar e información personal -->
+                        <div class="profile-header-banner">
+                            <div class="profile-avatar-circle" id="profileAvatar">JP</div>
+                            <div class="profile-info-details">
+                                <span class="badge-status">🟢 Sesión Activa</span>
+                                <h3 id="profileName">Juan Pérez</h3>
+                                <p id="profileEmail">juan@ejemplo.com</p>
+                                <p id="profilePhone" class="profile-phone"></p>
+                            </div>
+                        </div>
+
+                        <!-- Cuadrícula de beneficios para clientes registrados -->
+                        <div class="profile-benefits-grid">
+                            <div class="benefit-card">
+                                <span class="benefit-icon">🍔</span>
+                                <h4>10% OFF</h4>
+                                <p>Descuento en tu próxima orden con cupón DONDEJUAN10</p>
+                            </div>
+                            <div class="benefit-card">
+                                <span class="benefit-icon">⭐</span>
+                                <h4 id="profilePoints">150 Puntos</h4>
+                                <p>Puntos de fidelidad acumulados</p>
+                            </div>
+                            <div class="benefit-card">
+                                <span class="benefit-icon">🛵</span>
+                                <h4>Envío Gratis</h4>
+                                <p>En pedidos superiores a $30.000</p>
+                            </div>
+                        </div>
+
+                        <!-- Barra de acciones: explorar menú y cerrar sesión -->
+                        <div class="profile-actions-bar">
+                            <a href="menu.html" class="btn-action-menu">Explorar Menú</a>
+                            <button type="button" class="btn-action-logout" id="btnLogoutProfile">Cerrar Sesión</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <p>© Donde Juan - Sabor y Calidad Garantizados. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- ======================================================================
+         SCRIPTS MODULARES DEL FRONTEND (CARGADOS DESDE js/)
+         ====================================================================== -->
+    <!-- 1. Cliente API para conectar con backend Express y fallback en localStorage -->
+    <script src="js/api.js"></script>
+    <!-- 2. Lógica de autenticación, login, registro y perfil -->
+    <script src="js/auth.js"></script>
+    <!-- 3. Lógica del carrito de compras y drawer -->
+    <script src="js/cart.js"></script>
+    <!-- 4. Coordinador global de navegación y cabecera -->
+    <script src="js/main.js"></script>
+</body>
+</html>
