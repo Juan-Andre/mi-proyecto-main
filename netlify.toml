@@ -1,0 +1,7 @@
+# Netlify configuration for the Donde Juan site.
+# The frontend is plain static HTML/CSS/JS in the repo root. The build step
+# copies only those public assets into `public/`, so the Express backend
+# source and its data files (e.g. backend/data/users.json) are never published.
+[build]
+  command = "rm -rf public && mkdir -p public && cp -r index.html login.html menu.html main.js css js img logo public/"
+  publish = "public"
